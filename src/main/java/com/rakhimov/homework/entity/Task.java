@@ -1,12 +1,17 @@
 package com.rakhimov.homework.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
-@Data
+@RequiredArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table(name = "TASK")
+@Table(name = "task")
 public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

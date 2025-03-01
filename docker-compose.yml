@@ -28,6 +28,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    command: >
+      sh -c "gradle clean && gradle build && java -jar build/libs/homework-0.0.1-SNAPSHOT.jar"
 
 volumes:
   postgres_data:

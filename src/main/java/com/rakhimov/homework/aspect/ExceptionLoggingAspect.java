@@ -29,6 +29,6 @@ public class ExceptionLoggingAspect {
         logger.debug("Stack trace для {}.{}: ", className, methodName, exception);
 
         String alertMessage = String.format("ALERT: Критическая ошибка в %s.%s: %s", className, methodName, exception.getMessage());
-        System.err.println(alertMessage);
+        logger.error(alertMessage);
     }
 }

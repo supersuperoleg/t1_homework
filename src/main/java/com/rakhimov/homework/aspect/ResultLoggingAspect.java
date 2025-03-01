@@ -5,11 +5,10 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-@Aspect
 @Component
+@Aspect
 public class ResultLoggingAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(ResultLoggingAspect.class);
@@ -31,9 +30,7 @@ public class ResultLoggingAspect {
         if (result == null) {
             logger.warn("Метод {}.{} вернул null, что не предусмотрено!", className, methodName);
         } else {
-            if (result instanceof ResponseEntity<?> response) {
-                logger.info("Статус ответа для {}.{}: {}", className, methodName, response.getStatusCode());
-            }
+            logger.info("Ответ для {}.{}: {}", className, methodName, result);
         }
     }
 }
