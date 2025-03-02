@@ -2,7 +2,7 @@ spring:
   application:
     name: homework
   datasource:
-    url: jdbc:postgresql://localhost:5434/mydb
+    url: jdbc:postgresql://localhost:5433/mydb
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -11,3 +11,35 @@ spring:
       ddl-auto: none
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
+  mail:
+    host: smtp.rambler.ru
+    port: 465
+    username: formyw@rambler.ru
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+
+logging:
+  level:
+    ROOT: INFO
+    com.rakhimov.homework.controller.TaskController: DEBUG
+
+kafka:
+  bootstrap:
+    servers: localhost:9092,kafka:29092
+  consumer:
+      max.poll.records: 10
+  producer:
+    enable: true
+  task-topic: task_updated
+  group-id: group-id
+  listener:
+    poll-timeout: 1000
+
+# Здесь указываем email-адрес, на который отправим письмо
+email:
+  to: "formyw@gmail.com"

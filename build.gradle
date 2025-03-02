@@ -13,6 +13,10 @@ java {
 	}
 }
 
+tasks.withType(JavaCompile).configureEach {
+	options.annotationProcessorPath = configurations.annotationProcessor
+}
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -26,14 +30,24 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.springframework.kafka:spring-kafka'
+
 	implementation 'org.liquibase:liquibase-core'
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+
+
+	implementation("org.apache.kafka:kafka-clients:3.9.0")
+	implementation("org.apache.kafka:kafka-streams:3.9.0")
+
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
-	runtimeOnly 'org.postgresql:postgresql'
-	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	compileOnly 'org.projectlombok:lombok'
+
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	runtimeOnly 'org.postgresql:postgresql'
 }
 
 tasks.named('test') {
