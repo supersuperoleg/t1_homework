@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: Oleg
+      preConditions:
+        - not:
+            - columnExists:
+                tableName: task
+                columnName: status
+      changes:
+        - addColumn:
+            tableName: task
+            columns:
+              - column:
+                  name: status
+                  type: varchar(20)
